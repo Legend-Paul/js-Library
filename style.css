@@ -13,7 +13,13 @@
         input{
             width: 15rem;
             height: 1.5rem;
-            margin-right: 1rem;
+            margin-left: 2rem;
+        }
+        &:nth-child(2){
+            input {
+                margin-left: 1.2rem;
+            }
+            
         }
     }
     .close-dialog {
