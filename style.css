@@ -1,0 +1,27 @@
+.add-book{
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    background-color: rgb(32, 250, 32);
+    border: 1px solid grey;
+    cursor: pointer;
+}
+.input-cont {
+    display: grid;
+    gap: .5rem;
+    label {
+        
+        input{
+            width: 15rem;
+            height: 1.5rem;
+            margin-right: 1rem;
+        }
+    }
+    .close-dialog {
+        width: 5rem;
+        height: 1.5rem;
+        background-color: skyblue;
+        border-radius: .4rem;
+        cursor: pointer;
+        border: 1px solid grey;
+    }
+}
