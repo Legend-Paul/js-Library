@@ -1,9 +1,11 @@
 let dialog = document.querySelector(".dialog");
 let addBook = document.querySelector('.add-book');
+let addDialog = document.querySelector('.add-dialog');
 let closeDialog = document.querySelector('.close-dialog');
 let title = document.querySelector('.title');
 let author = document.querySelector('.author');
 let pages = document.querySelector('.pages');
+let inputCont = document.querySelector('.input-cont');
 const library = [];
 
 addBook.addEventListener('click', function(){
@@ -12,12 +14,21 @@ addBook.addEventListener('click', function(){
     author.value = '';
     pages.value = '';
 });
-closeDialog.addEventListener ('click', function(){
+addDialog.addEventListener ('click', function(e){
     let titleValue = title.value;
     let authorValue = author.value;
     let pagesValue = pages.value;
-    addToLibrary(titleValue, authorValue, pagesValue);
-    console.log(library);
+    if (pagesValue < "1"){
+        pages.title = 'Pages must be greater than 0';
+    }
+    else if (titleValue !== '' && authorValue !== '' && pagesValue !== ''){
+        addToLibrary(titleValue, authorValue, pagesValue);
+        console.log(library);
+        dialog.close();
+    }    
+    
+});
+closeDialog.addEventListener("click", ()=>{
     dialog.close();
 });
 

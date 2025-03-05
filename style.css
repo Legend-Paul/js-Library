@@ -5,9 +5,13 @@
     border: 1px solid grey;
     cursor: pointer;
 }
+span {
+    color: red;
+}
 .input-cont {
     display: grid;
     gap: .5rem;
+    
     label {
         
         input{
@@ -22,12 +26,21 @@
             
         }
     }
-    .close-dialog {
-        width: 5rem;
-        height: 1.5rem;
-        background-color: skyblue;
-        border-radius: .4rem;
-        cursor: pointer;
-        border: 1px solid grey;
+    .dialog-btns{
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        button {
+            width: 5rem;
+            height: 1.5rem;
+            background-color: skyblue;
+            border-radius: .4rem;
+            cursor: pointer;
+            border: 1px solid grey;
+        }
+        .close-dialog {
+            background-color: rgb(253, 59, 59);
+        }
     }
+    
 }
