@@ -8,14 +8,17 @@ let pages = document.querySelector('.pages');
 let releaseYear = document.querySelector(".release-year");
 let inputCont = document.querySelector('.input-cont');
 let tbody = document.querySelector("tbody");
+let deleteBtn = document.querySelector('.delete');
+
+// {Title: "Rich", Author: "Robert", Pages: 456, ReleaseYear:"03/01/2024"}
 const library = [];
 let currentYear = new Date().toLocaleDateString();
 
 addBook.addEventListener('click', function(){
     dialog.showModal();
-    title.value ='';
-    author.value = '';
-    pages.value = '';
+    title.value ='Rich';
+    author.value = 'Robert';
+    pages.value = '779';
     releaseYear.value = '';
 });
 addDialog.addEventListener ('click', function(e){
@@ -32,7 +35,6 @@ addDialog.addEventListener ('click', function(e){
         tbody.innerHTML = displayLibrary();
         dialog.close();
         }    
-    
 });
 
 
@@ -52,8 +54,14 @@ function addToLibrary(Title, Author, Pages, ReleaseYear){
     library.push(book);
 }
 
+tbody.innerHTML = displayLibrary();
 function displayLibrary(){
     let books = '';
+    if (library.length === 0){
+        let para = document.createElement("p");
+        para.style = "font-size: 2rem;";
+        return para.textContent = "Oops! Library empty"
+    }
     library.forEach((book, i)=>{
         if (i === 0){
             books += `
@@ -76,6 +84,11 @@ function displayLibrary(){
                 <td>
                     ${book.ReleaseYear}
                 </td>
+                <td>
+                    <button class='delete' onclick="removeBook()">Delete</button>
+                </td>
+                
+
             </tr>
        `;  
         }
@@ -94,14 +107,30 @@ function displayLibrary(){
                 <td>
                     ${book.ReleaseYear}
                 </td>
+                <td>
+                    <button class='delete'  onclick="removeBook(${i})" data-book-id = '${i}'>Delete</button>
+                </td>
             </tr>
        `;  
-        }
-       
+        }       
     });
+    
     return books; 
 }
 
+function removeBook(num){
+    if (num === undefined){
+        library.splice(0, 1);
+        console.log("undefined now");
+    }
+    else {
+        library.splice(num ,1);
+        console.table(library);
+    }
+    tbody.innerHTML = displayLibrary();
+    
+
+}
 
 
 

@@ -6,11 +6,19 @@
     cursor: pointer;
     margin: 1rem 3rem;
 }
+.delete {
+    background-color: rgb(253, 59, 59);
+    width: 5rem;
+    height: 1.5rem;
+    border-radius: .4rem;
+    cursor: pointer;
+    border: 1px solid grey
+}
 .open-library {
     background-color: skyblue;
 }
 span {
-    color: red;
+    color: rgb(253, 59, 59);
 }
 .input-cont {
     display: grid;
