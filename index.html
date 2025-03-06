@@ -8,25 +8,39 @@
 </head>
 <body>
     <button class="add-book">Add New Book</button>
+    <div class="library">
+        <table>
+            <thead>
+                
+            </thead>
+            <tbody>
+                      
+            </tbody>
+        </table>
+    </div>
     <dialog class="dialog">
         <p>All fields with <span>*</span> must be filled</p>
         <div class="input-cont">
             <label>
-                Title <span>*</span>:
+                <p>Title <span>*</span>:</p>
                 <input type="text" name="title" class="title" required>
             </label>
             <label>
-                Author <span>*</span>:
+                <p>Author <span>*</span>:</p>
                 <input type="text" name="Author" class="author" required>
             </label>
             <label>
-                Pages <span>*</span>:
+                <p>Pages <span>*</span>:</p>
                 <input type="number" name="pages" class="pages" title="Please fill out this field and pages must be greater than 0" required min="1">
+            </label>
+            <label>
+                <p>Release Year <span>*</span>:</p>
+                <input type="date" name="pages" class="release-year" required>
             </label>
 
             <div class="dialog-btns">
-                <button class="close-dialog">close</button>
                 <button class="add-dialog">Add</button>
+                <button class="close-dialog">close</button>
             </div>
             
         </div>

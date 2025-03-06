@@ -1,28 +1,29 @@
-.add-book{
+.add-book {
     padding: .5rem 1rem;
     border-radius: .5rem;
     background-color: rgb(32, 250, 32);
     border: 1px solid grey;
     cursor: pointer;
+    margin: 1rem 3rem;
+}
+.open-library {
+    background-color: skyblue;
 }
 span {
     color: red;
 }
 .input-cont {
     display: grid;
-    gap: .5rem;
+    gap: .25rem;
     
     label {
-        
+        display: grid;
         input{
-            width: 15rem;
-            height: 1.5rem;
-            margin-left: 2rem;
+            padding: 0 .5rem;
+            width: 20rem;
+            height: 1.75rem;
         }
-        &:nth-child(2){
-            input {
-                margin-left: 1.2rem;
-            }
+       
             
         }
     }
@@ -42,5 +43,12 @@ span {
             background-color: rgb(253, 59, 59);
         }
     }
-    
-}
+ table {
+    margin: 0 3rem;
+    tr, th {
+        padding-right: 2rem;
+        padding: 0 2rem;
+        text-align: center;
+        
+    }
+ }
