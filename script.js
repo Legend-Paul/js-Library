@@ -20,6 +20,7 @@ class Book {
         this.ReleaseYear = ReleaseYear;
     }
     
+    
 }
 console.log();
 
@@ -30,123 +31,141 @@ class DialogBox {
 
 class MyLibrary {
     constructor (){
-       this.titleValue = null;
-       this.authorValue = null;
+       this.titleValue = '';
+       this.authorValue = '';
        this.pagesValue = null;
-       this.releaseYearValue = null;
+       this.releaseYearValue = '';
+       
     }
     showInputModal(){
        addBook.addEventListener('click', function(){
-        dialog.showModal();
-        title.value ='';
-        author.value = '';
-        pages.value = '';
-        releaseYear.value = '';
+           dialog.showModal();
+           title.value ='';
+           author.value = '';
+           pages.value = '';
+           releaseYear.value = '';
    });
     }
+    addToLibrary(Title, Author, Pages, ReleaseYear){
+        let book = new Book(Title, Author, Pages, ReleaseYear);
+        library.push(book);
+    }
+
+
+    closeDialogInput(){
+        closeDialog.addEventListener("click", ()=>{
+            dialog.close();
+        });
+    }
     
+    displayLibrary(){
+        let books = '';
+        if (library.length === 0){
+            let para = document.createElement("p");
+            para.style = "font-size: 2rem;";
+            return para.textContent = "Oops! Library Is Empty"
+        }
+        library.forEach((book, i)=>{
+            if (i === 0){
+                books += `
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Pages</th>
+                    <th>Release Year</th>
+                </tr>    
+                <tr>
+                    <td>
+                        ${book.Title}
+                    </td>
+                    <td>
+                        ${book.Author}
+                    </td>
+                    <td>
+                        ${book.Pages}
+                    </td>
+                    <td>
+                        ${book.ReleaseYear}
+                    </td>
+                    <td>
+                        <button class='delete' onclick="mylib.removeBook()">Delete</button>
+                    </td>
+                    
+    
+                </tr>
+           `;  
+            }
+            else {
+                books += ` 
+                <tr>
+                    <td>
+                        ${book.Title}
+                    </td>
+                    <td>
+                        ${book.Author}
+                    </td>
+                    <td>
+                        ${book.Pages}
+                    </td>
+                    <td>
+                        ${book.ReleaseYear}
+                    </td>
+                    <td>
+                        <button class='delete'  onclick="mylib.removeBook(${i})" data-book-id = '${i}'>Delete</button>
+                    </td>
+                </tr>
+           `;  
+            }       
+        });
+        return books; 
+    }
+
+    addDialogInput(){
+        addDialog.addEventListener ('click', (e)=>{
+            this.titleValue = title.value;
+            this.authorValue = author.value;
+            this.pagesValue = pages.value;
+            this.releaseYearValue = releaseYear.value;            
+            
+            if (this.titleValue !== '' && this.authorValue !== '' && this.pagesValue !== '') {
+                if (this.pagesValue < "1"){
+                    pages.title = 'Pages must be greater than 0';
+                }
+                else {
+                    let book = new Book(this.titleValue, this.authorValue, this.pagesValue, this.releaseYearValue);
+                    library.push(book);
+                    tbody.innerHTML = this.displayLibrary();  
+                    dialog.close();
+                }
+                
+            }   
+        });                 
+    }
+
+    
+    removeBook(num){
+        library.splice(num ,1);
+        tbody.innerHTML = this.displayLibrary(); 
+    }
+
+    showBooks(){
+        if (library.length === 0){
+            tbody.innerHTML = this.displayLibrary();
+        }
+        
+        this.showInputModal();
+        this.addDialogInput();
+        this.closeDialogInput();
+    }
 }
 
 
-// addDialog.addEventListener ('click', function(e){
-//     let titleValue = title.value;
-//     let authorValue = author.value;
-//     let pagesValue = pages.value;
-//     let releaseYearValue = releaseYear.value; 
-//     if (pagesValue < "1"){
-//         pages.title = 'Pages must be greater than 0';
-//     }
-   
-//     else if (titleValue !== '' && authorValue !== '' && pagesValue !== ''){
-//         addToLibrary(titleValue, authorValue, pagesValue, releaseYearValue);
-//         tbody.innerHTML = displayLibrary();
-//         dialog.close();
-//         }    
-// });
-
-
-// closeDialog.addEventListener("click", ()=>{
-//     dialog.close();
-// });
+let mylib = new MyLibrary();
+mylib.showBooks();
 
 
 
 
-// tbody.innerHTML = displayLibrary();
-// function displayLibrary(){
-//     let books = '';
-//     if (library.length === 0){
-//         let para = document.createElement("p");
-//         para.style = "font-size: 2rem;";
-//         return para.textContent = "Oops! Library empty"
-//     }
-//     library.forEach((book, i)=>{
-//         if (i === 0){
-//             books += `
-//             <tr>
-//                 <th>Title</th>
-//                 <th>Author</th>
-//                 <th>Pages</th>
-//                 <th>Release Year</th>
-//             </tr>    
-//             <tr>
-//                 <td>
-//                     ${book.Title}
-//                 </td>
-//                 <td>
-//                     ${book.Author}
-//                 </td>
-//                 <td>
-//                     ${book.Pages}
-//                 </td>
-//                 <td>
-//                     ${book.ReleaseYear}
-//                 </td>
-//                 <td>
-//                     <button class='delete' onclick="removeBook()">Delete</button>
-//                 </td>
-                
-
-//             </tr>
-//        `;  
-//         }
-//         else {
-//             books += ` 
-//             <tr>
-//                 <td>
-//                     ${book.Title}
-//                 </td>
-//                 <td>
-//                     ${book.Author}
-//                 </td>
-//                 <td>
-//                     ${book.Pages}
-//                 </td>
-//                 <td>
-//                     ${book.ReleaseYear}
-//                 </td>
-//                 <td>
-//                     <button class='delete'  onclick="removeBook(${i})" data-book-id = '${i}'>Delete</button>
-//                 </td>
-//             </tr>
-//        `;  
-//         }       
-//     });
-    
-//     return books; 
-// }
-
-// function removeBook(num){
-//     if (num === undefined){
-//         library.splice(0, 1);
-//     }
-//     else {
-//         library.splice(num ,1);
-//     }
-//     tbody.innerHTML = displayLibrary();
-    
-
-// }
 
 
 
