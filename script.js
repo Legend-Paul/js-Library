@@ -9,25 +9,17 @@ let releaseYear = document.querySelector(".release-year");
 let inputCont = document.querySelector('.input-cont');
 let tbody = document.querySelector("tbody");
 let deleteBtn = document.querySelector('.delete');
-
 let library = [];
 let currentYear = new Date().toLocaleDateString();
+
 class Book {
     constructor (Title, Author, Pages, ReleaseYear){
         this.Title = Title;
         this.Author = Author;
         this.Pages = Pages;
         this.ReleaseYear = ReleaseYear;
-    }
-    
-    
+    }   
 }
-console.log();
-
-class DialogBox {
-
-}
-
 
 class MyLibrary {
     constructor (){
@@ -50,8 +42,6 @@ class MyLibrary {
         let book = new Book(Title, Author, Pages, ReleaseYear);
         library.push(book);
     }
-
-
     closeDialogInput(){
         closeDialog.addEventListener("click", ()=>{
             dialog.close();
@@ -141,7 +131,6 @@ class MyLibrary {
             }   
         });                 
     }
-
     
     removeBook(num){
         library.splice(num ,1);
@@ -158,7 +147,6 @@ class MyLibrary {
         this.closeDialogInput();
     }
 }
-
 
 let mylib = new MyLibrary();
 mylib.showBooks();
